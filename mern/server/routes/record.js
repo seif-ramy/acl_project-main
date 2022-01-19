@@ -61,7 +61,7 @@ recordRoutes.route("/record/add").post(function (req, response) {
     response.json(res);
   });
 });
-=======
+
 recordRoutes.post("/payment", async (req, res, next) => {
   try {
       console.log('should be called')
@@ -96,7 +96,7 @@ recordRoutes.post("/payment", async (req, res, next) => {
     }
 });
 
-// flightRouter.post("/pay", async (req, res) => {
+// recordRoutes.post("/pay", async (req, res) => {
 //   const { product, token, email } = req.body;
 
 //   return stripe.customers
@@ -133,7 +133,6 @@ async (req, res) => {
   });
 }
 );
->>>>>>> parent of 7a3853e9 (Revert "p3")
 
 // Login User
 recordRoutes.route("/login").post(async function (req, res){
