@@ -98,7 +98,7 @@ class Bookings extends Component {
         <td>{this.state.arrTime}</td>
         <td>{this.state.terminal}</td>
         <td>
-        <Link to={"/payment"}>Pay</Link> | <Link to={"/user/search"}>Change Flight</Link> | 
+        <Link to={"/selectseats"}>Select Seats</Link> | <Link to={"/user/search"}>Change Flight</Link> | 
       <a
         href={"http://localhost:3000/user/search"}
         onClick={() => {

@@ -11,6 +11,7 @@ import Create from "./components/create";
 import RecordList from "./components/recordList";
 import SearchResult from "./components/searchRecord2";
 import SelectSeats from "./components/selectseats";
+import SelectSeats2 from "./components/selectseats2";
 import SignUp from "./components/part2/Register";
 import Login from "./components/part2/Login";
 import ChangePass from "./components/part2/changePass";
@@ -18,6 +19,9 @@ import UserSearch from "./components/usersearch";
 import UserProfile from "./components/part2/userProfile";
 import Bookings from "./components/part2/bookings"; 
 import UserEdit from "./components/part2/userEdit"; 
+import Payment from "./components/part2/payment"; 
+import PaymentForm from "./components/part2/paymentform";
+
 const App = () => {
   return (
     <div>
@@ -44,8 +48,20 @@ const App = () => {
         <UserSearch/>
       </Route>
 
+      <Route path="/paymentform">
+        <PaymentForm/>
+      </Route>
+
       <Route path="/selectseats">
         <SelectSeats/>
+      </Route>
+
+      <Route path="/payment">
+        <Payment/>
+      </Route>
+
+      <Route path="/selectseats2">
+        <SelectSeats2/>
       </Route>
 
       <Route path="/register">
