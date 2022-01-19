@@ -37,7 +37,7 @@ export default class App extends React.Component {
     render() {
       return (
         <div>
-          <h1>Select Return Seats</h1>
+          <h1>Select Departure Seats</h1>
           <DrawGrid 
             seat = { this.state.seat }
             available = { this.state.seatAvailable }
@@ -99,8 +99,10 @@ export default class App extends React.Component {
             { this.props.reserved.map(res => <li key={res} >{res}</li>) }
           </ul>
 
-          <Link to={"/selectseats2"}>Select Return Seats</Link>
+          <Link to={"/payment"}>Pay</Link>
+
         </div>
+        
       )
     }
   }

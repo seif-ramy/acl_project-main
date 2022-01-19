@@ -57,16 +57,6 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <NavLink className="nav-link" to="/selectseats">
-                Select Seats
-              </NavLink>
-            </li>
-          </ul>
-        </div>
-
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
               <NavLink className="nav-link" to="/register">
                 Register
               </NavLink>

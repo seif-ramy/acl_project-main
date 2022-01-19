@@ -20,7 +20,7 @@ export class TableRow extends Component {
         href={"/book/" + this.props.id}
         onClick={() => {
           if(window.confirm("Are You Sure You Want to Book This Flight?")){
-            console.log("hi");
+            console.log("");
           }
         }}
       >

@@ -5,6 +5,7 @@ const cors = require("cors");
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
+const paymentRoutes = require("./routes/paymentRoutes");
 require("dotenv").config({ path: "./config.env" });
 const port = process.env.PORT || 5000;
 app.use(cors());
@@ -19,5 +20,7 @@ app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
 
+
 app.use(require("./routes/record"));
+app.use(require("./routes/paymentRoutes"));
 // get driver connection
