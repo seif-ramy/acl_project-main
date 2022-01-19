@@ -4,7 +4,7 @@ const flightRouter = express.Router();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 
-flightRouter.post("/payment", async (req, res, next) => {
+flightRouter.post("/pay", async (req, res, next) => {
     try {
         console.log('should be called')
         const { totalPrice, name, email } = req.body;
@@ -24,8 +24,8 @@ flightRouter.post("/payment", async (req, res, next) => {
             },
           ],
           customer_email: email,
-          success_url: "http://localhost:5000/user_home?success=true",
-          cancel_url: "http://localhost:5000/user_home?success=false",
+          success_url: "http://localhost:3000/user_home?success=true",
+          cancel_url: "http://localhost:3000/user_home?success=false",
         });
         if (session) {
             res.redirect(303, session.url);
