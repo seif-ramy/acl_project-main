@@ -20,6 +20,7 @@ import UserProfile from "./components/part2/userProfile";
 import Bookings from "./components/part2/bookings"; 
 import UserEdit from "./components/part2/userEdit"; 
 import Payment from "./components/part2/payment"; 
+import PaymentForm from "./components/part2/paymentform";
 
 const App = () => {
   return (
@@ -45,6 +46,10 @@ const App = () => {
 
       <Route path="/user/search">
         <UserSearch/>
+      </Route>
+
+      <Route path="/paymentform">
+        <PaymentForm/>
       </Route>
 
       <Route path="/selectseats">
