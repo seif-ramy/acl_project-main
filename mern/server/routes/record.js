@@ -342,8 +342,7 @@ recordRoutes.route("/user/add").post(async function (req, response) {
 
 
 //Require Model
-const Users = require('/Users/seiframy/Downloads/acl_project-main/mern/server/schema/userSchema.js');
-
+const Users = require('mern/server/routes/record.js');
 
 
    
