@@ -40,7 +40,6 @@ recordRoutes.route("/record").get(function (req, res) {
     });
 });
 
-<<<<<<< HEAD
 recordRoutes.route("/record/add").post(function (req, response) {
   let db_connect = dbo.getDb();
   
@@ -323,8 +322,7 @@ recordRoutes.route("/user/add").post(async function (req, response) {
 
 
 //Require Model
-const Users = require('/Users/seiframy/Downloads/acl_project-main/mern/server/schema/userSchema.js');
-
+const Users = require('mern/server/routes/record.js');
 
 
    
