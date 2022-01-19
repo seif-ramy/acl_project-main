@@ -40,6 +40,9 @@ class Bookings extends Component {
           arrTime: response.data.arrTime,
           terminal: response.data.terminal,
         });
+        var array = [];
+        array.push(response.data);
+        console.log(array[0].flight_from)
       })
       .catch(function (error) {
         console.log(error);
