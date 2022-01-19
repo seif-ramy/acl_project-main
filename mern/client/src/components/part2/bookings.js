@@ -25,6 +25,7 @@ class Bookings extends Component {
   }
   // This will get the record based on the id from the database.
   componentDidMount() {
+    
     axios
       .get("http://localhost:5001/record/" + this.props.match.params.id)
       .then((response) => {
@@ -41,8 +42,21 @@ class Bookings extends Component {
           terminal: response.data.terminal,
         });
         
-        array.push(response.data);
-        console.log(array[0].flight_from)
+        const userflight = {
+          flight_from: this.state.flight_from,
+          flight_to: this.state.flight_to,
+          flightNum: this.state.flightNum,
+          flight_date: this.state.flight_date,
+          cabin: this.state.cabin,
+          noSeats: this.state.noSeats,
+          depTime: this.state.depTime,
+          arrTime: this.state.arrTime,
+          terminal: this.state.terminal,
+        };
+    
+        axios
+          .post("http://localhost:5001/userBookings", userflight)
+          .then((res) => console.log(res.data));
       })
       .catch(function (error) {
         console.log(error);

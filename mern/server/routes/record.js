@@ -111,13 +111,28 @@ recordRoutes.route("/login").post(async function (req, res){
 recordRoutes.route("/record/:id").get(function (req, res) {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
+  console.log(req.params.id);
+  // flight_from = res.body.flight_from;
+  // console.log(flight_from)
+  // flight_to=res.body.flight_to;
+  // flightNum=res.body.flightNum;
+  // flight_date=res.body.flight_date;
+  // cabin=res.body.cabin;
+  // noSeats=res.body.noSeats;
+  // depTime=res.body.depTime;
+  // arrTime=res.body.arrTime;
+  // terminal=res.body.terminal;
   db_connect
       .collection("flights")
-      .findOne(myquery, function (err, result) {
+      .findOne(myquery), function (err, result) {
         if (err) throw err;
         res.json(result);
-      });
+      }
 });
+
+// const Bookings = require('/Users/seiframy/Downloads/acl_project-main/mern/server/schema/bookings.js');
+
+
 
 recordRoutes.route("/userBookings").post(async function (req, res){
 
@@ -133,7 +148,7 @@ recordRoutes.route("/userBookings").post(async function (req, res){
       const user = await Users.findOne({email : email});
       if(user){
         let myobj = {
-          email:email,
+          email: email,
           flight_from: flight_from,
           flight_to: flight_to,
           flightNum: flightNum,
@@ -145,9 +160,9 @@ recordRoutes.route("/userBookings").post(async function (req, res){
           terminal: terminal,
         };
         let db_connect = dbo.getDb();
-        db_connect.collection("userBookings").insertOne(myobj, function (err, res) {
+        db_connect.collection("userBookings").insertOne(myobj, function (err, result) {
           if (err) throw err;
-          response.json(res);
+          res.json(result);
         });
           
             
@@ -163,17 +178,6 @@ recordRoutes.route("/userBookings").post(async function (req, res){
     res.status(400).send("error");
   }
 })
-
-
-
-
-
-
-
-
-
-
-
 
 
 

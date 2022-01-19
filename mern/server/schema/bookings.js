@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Booking  = new mongoose.Schema({
+const Bookings  = new mongoose.Schema({
 
     email : {
         type : String,
@@ -16,8 +16,8 @@ const Booking  = new mongoose.Schema({
     //         }
     //     }
     //  ]
-    flights : [
-        {
+    // flights : [
+    //     {
             flight_from : {
                 type : String,
                 required : true
@@ -62,8 +62,8 @@ const Booking  = new mongoose.Schema({
                 type : String,
                 required : true
             }
-        }
-    ]
+    //     }
+    // ]
     
 
 })
