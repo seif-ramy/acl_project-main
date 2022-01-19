@@ -40,7 +40,6 @@ recordRoutes.route("/record").get(function (req, res) {
     });
 });
 
-<<<<<<< HEAD
 recordRoutes.route("/record/add").post(function (req, response) {
   let db_connect = dbo.getDb();
   
@@ -96,32 +95,32 @@ recordRoutes.post("/payment", async (req, res, next) => {
     }
 });
 
-// recordRoutes.post("/pay", async (req, res) => {
-//   const { product, token, email } = req.body;
+recordRoutes.post("/pay", async (req, res) => {
+  const { product, token, email } = req.body;
 
-//   return stripe.customers
-//     .create({
-//       email,
-//       source: token.id,
-//       email,
-//     })
-//     .then((customer) => {
-//       stripe.charges
-//         .create({
-//           amount: product.price * 100,
-//           currency: "egp",
-//           customer: customer.id,
-//           receipt_email: email,
-//         })
-//         .then((result) => {
-//           console.log(result);
-//           res.status(200).json({
-//             charge: result,
-//           });
-//         });
-//     })
-//     .catch((err) => console.log(err));
-// });
+  return stripe.customers
+    .create({
+      email,
+      source: token.id,
+      email,
+    })
+    .then((customer) => {
+      stripe.charges
+        .create({
+          amount: product.price * 100,
+          currency: "egp",
+          customer: customer.id,
+          receipt_email: email,
+        })
+        .then((result) => {
+          console.log(result);
+          res.status(200).json({
+            charge: result,
+          });
+        });
+    })
+    .catch((err) => console.log(err));
+});
 
 recordRoutes.post(
 "/refund",
@@ -133,6 +132,7 @@ async (req, res) => {
   });
 }
 );
+
 
 // Login User
 recordRoutes.route("/login").post(async function (req, res){
@@ -186,27 +186,46 @@ recordRoutes.route("/record/:id").get(function (req, res) {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
   console.log(req.params.id);
-  // flight_from = res.body.flight_from;
-  // console.log(flight_from)
-  // flight_to=res.body.flight_to;
-  // flightNum=res.body.flightNum;
-  // flight_date=res.body.flight_date;
-  // cabin=res.body.cabin;
-  // noSeats=res.body.noSeats;
-  // depTime=res.body.depTime;
-  // arrTime=res.body.arrTime;
-  // terminal=res.body.terminal;
   db_connect
       .collection("flights")
-      .findOne(myquery), function (err, result) {
+      .findOne(myquery, function (err, result) {
         if (err) throw err;
         res.json(result);
-      }
+        flight_from = result.flight_from;
+        flight_to=result.flight_to;
+        flightNum=result.flightNum;
+        flight_date=result.flight_date;
+        cabin=result.cabin;
+        noSeats=result.noSeats;
+        depTime=result.depTime;
+        arrTime=result.arrTime;
+        terminal=result.terminal;
+      });
 });
 
 // const Bookings = require('/Users/seiframy/Downloads/acl_project-main/mern/server/schema/bookings.js');
 
-
+// recordRoutes.route("/allBookings").get(function (req, res) {
+//   let db_connect = dbo.getDb();
+//   let myquery = {email: email};
+//   db_connect
+//       .collection("userBookings")
+//       .find(myquery, function (err, result) {
+//         if (err) throw err;
+//         console.log(result.flight_from)
+//         res.status(200).send("LoggedIn")
+//         // res.json(result);
+//         // flight_from = result.flight_from;
+//         // flight_to=result.flight_to;
+//         // flightNum=result.flightNum;
+//         // flight_date=result.flight_date;
+//         // cabin=result.cabin;
+//         // noSeats=result.noSeats;
+//         // depTime=result.depTime;
+//         // arrTime=result.arrTime;
+//         // terminal=result.terminal;
+//       });
+// });
 
 recordRoutes.route("/userBookings").post(async function (req, res){
 

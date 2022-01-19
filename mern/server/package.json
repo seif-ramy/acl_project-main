@@ -20,7 +20,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.7.3",
     "mongoose": "^5.12.4",
-    "reactjs-popup": "^2.0.5"
+    "reactjs-popup": "^2.0.5",
+    "stripe": "^8.198.0"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.2"
