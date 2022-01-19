@@ -3,7 +3,7 @@ import React,  {Component}  from "react";
 import axios from "axios";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
-
+var array = [];
 class Bookings extends Component {
   
   constructor(props) {
@@ -40,7 +40,7 @@ class Bookings extends Component {
           arrTime: response.data.arrTime,
           terminal: response.data.terminal,
         });
-        var array = [];
+        
         array.push(response.data);
         console.log(array[0].flight_from)
       })

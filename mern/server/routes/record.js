@@ -12,7 +12,15 @@ const recordRoutes = express.Router();
 const dbo = require("../db/conn");
 const app = express();
 var email="";
-
+var flight_from= "";
+var flight_to= "";
+var flightNum= "";
+var flight_date= "";
+var cabin= "";
+var noSeats= "";
+var depTime= "";
+var arrTime= "";
+var terminal= "";
 
 
 // This help convert the id from string to ObjectId for the _id.
@@ -29,6 +37,27 @@ recordRoutes.route("/record").get(function (req, res) {
       if (err) throw err;
       res.json(result);
     });
+});
+
+recordRoutes.route("/record/add").post(function (req, response) {
+  let db_connect = dbo.getDb();
+  
+
+  let myobj = {
+    flight_from: req.body.flight_from,
+    flight_to: req.body.flight_to,
+    flightNum: req.body.flightNum,
+    flight_date: req.body.flight_date,
+    cabin: req.body.cabin,
+    noSeats: req.body.noSeats,
+    depTime: req.body.depTime,
+    arrTime: req.body.arrTime,
+    terminal: req.body.terminal,
+  };
+  db_connect.collection("flights").insertOne(myobj, function (err, res) {
+    if (err) throw err;
+    response.json(res);
+  });
 });
 
 // Login User
@@ -78,6 +107,75 @@ recordRoutes.route("/login").post(async function (req, res){
   }
 })
 
+// This section will help you get a single record by id
+recordRoutes.route("/record/:id").get(function (req, res) {
+  let db_connect = dbo.getDb();
+  let myquery = { _id: ObjectId( req.params.id )};
+  db_connect
+      .collection("flights")
+      .findOne(myquery, function (err, result) {
+        if (err) throw err;
+        res.json(result);
+      });
+});
+
+recordRoutes.route("/userBookings").post(async function (req, res){
+
+  try {
+    mongoose.connect(
+      process.env.ATLAS_URI,
+      { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
+      () => {
+        console.log('Connected to MongoDB');
+      }
+    );
+      // Find User if Exist
+      const user = await Users.findOne({email : email});
+      if(user){
+        let myobj = {
+          email:email,
+          flight_from: flight_from,
+          flight_to: flight_to,
+          flightNum: flightNum,
+          flight_date: flight_date,
+          cabin: cabin,
+          noSeats: noSeats,
+          depTime: depTime,
+          arrTime: arrTime,
+          terminal: terminal,
+        };
+        let db_connect = dbo.getDb();
+        db_connect.collection("userBookings").insertOne(myobj, function (err, res) {
+          if (err) throw err;
+          response.json(res);
+        });
+          
+            
+            res.status(200).send("LoggedIn")
+            
+          
+      }else{
+          res.status(400).send("Invalid Credentials");
+      }
+
+  } catch (error) {
+    console.log(error)
+    res.status(400).send("error");
+  }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 recordRoutes.route("/userProfile").get(function (req, res) {
   console.log("eshtaa");
@@ -94,17 +192,7 @@ recordRoutes.route("/userProfile").get(function (req, res) {
 
 
 
-// This section will help you get a single record by id
-recordRoutes.route("/record/:id").get(function (req, res) {
-  let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId( req.params.id )};
-  db_connect
-      .collection("flights")
-      .findOne(myquery, function (err, result) {
-        if (err) throw err;
-        res.json(result);
-      });
-});
+
 
 // This section will help you get a single record by id
 recordRoutes.route("/user/:id").get(function (req, res) {
@@ -120,24 +208,7 @@ recordRoutes.route("/user/:id").get(function (req, res) {
 
 
 
-recordRoutes.route("/record/add").post(function (req, response) {
-  let db_connect = dbo.getDb();
-  let myobj = {
-    flight_from: req.body.flight_from,
-    flight_to: req.body.flight_to,
-    flightNum: req.body.flightNum,
-    flight_date: req.body.flight_date,
-    cabin: req.body.cabin,
-    noSeats: req.body.noSeats,
-    depTime: req.body.depTime,
-    arrTime: req.body.arrTime,
-    terminal: req.body.terminal,
-  };
-  db_connect.collection("flights").insertOne(myobj, function (err, res) {
-    if (err) throw err;
-    response.json(res);
-  });
-});
+
 
 recordRoutes.route("/user/add").post(async function (req, response) {
   let db_connect = dbo.getDb();
